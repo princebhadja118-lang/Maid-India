@@ -96,14 +96,19 @@ const Maids = () => {
                         ) : (
                             bookings.map((book) => (
                                 <Card key={book.id} sx={{ m: 2 }}>
-                                    <CardContent>
-                                        <Typography variant="h6">Name: {book.name}</Typography>
-                                        <Typography variant="body1">Service: {book.service}</Typography>
-                                        <Button sx={{ bgcolor: 'black', color: 'white' }} onClick={() => removemaid(book.id)}>Remove</Button>
+                                    <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <Box>
+                                            <Typography variant="h6">Name: {book.name}</Typography>
+                                            <Typography variant="body1">Service: {book.service}</Typography>
+                                        </Box>
+                                        <Box>
+                                            <Button sx={{ bgcolor: 'black', color: 'white' }} onClick={() => removemaid(book.id)}>Remove</Button>
+                                        </Box>
                                     </CardContent>
                                 </Card>
                             ))
                         )}
+
                         {bookings.length !== 0 ? (
                             <Button sx={{ ml: 2, bgcolor: 'black', color: 'white', width: '525px' }}>Booking</Button>
                         ) : (

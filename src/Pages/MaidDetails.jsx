@@ -219,5 +219,228 @@ export const maiddetails = [
         price: 310,
         rating: 4.4,
         photo: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce"
+    },
+    {
+        id: 21,
+        name: "Shanti Devi",
+        age: 34,
+        experience: "5 Years",
+        city: "Hisar",
+        service: "House Cleaning",
+        price: 290,
+        rating: 4.5,
+        photo: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe"
+    },
+    {
+        id: 22,
+        name: "Kamla Bai",
+        age: 29,
+        experience: "3 Years",
+        city: "Rewari",
+        service: "Cooking Maid",
+        price: 270,
+        rating: 4.3,
+        photo: "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f"
+    },
+    {
+        id: 23,
+        name: "Pinki Yadav",
+        age: 31,
+        experience: "4 Years",
+        city: "Mathura",
+        service: "Babysitter",
+        price: 300,
+        rating: 4.4,
+        photo: "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7"
+    },
+    {
+        id: 24,
+        name: "Lata Sharma",
+        age: 36,
+        experience: "6 Years",
+        city: "Panipat",
+        service: "Elder Care",
+        price: 340,
+        rating: 4.7,
+        photo: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde"
+    },
+    {
+        id: 25,
+        name: "Rupa Patel",
+        age: 39,
+        experience: "7 Years",
+        city: "Anand",
+        service: "Full Time",
+        price: 410,
+        rating: 4.9,
+        photo: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"
+    },
+
+    {
+        id: 26,
+        name: "Savitri",
+        age: 27,
+        experience: "2 Years",
+        city: "Jabalpur",
+        service: "House Cleaning",
+        price: 240,
+        rating: 4.1,
+        photo: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91"
+    },
+    {
+        id: 27,
+        name: "Nirmala",
+        age: 33,
+        experience: "5 Years",
+        city: "Sikar",
+        service: "Cooking Maid",
+        price: 310,
+        rating: 4.6,
+        photo: "https://images.unsplash.com/photo-1488161628813-04466f872be2"
+    },
+    {
+        id: 28,
+        name: "Payal",
+        age: 28,
+        experience: "3 Years",
+        city: "Ajmer",
+        service: "Babysitter",
+        price: 260,
+        rating: 4.3,
+        photo: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c"
+    },
+    {
+        id: 29,
+        name: "Usha",
+        age: 37,
+        experience: "6 Years",
+        city: "Neemrana",
+        service: "Elder Care",
+        price: 350,
+        rating: 4.7,
+        photo: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce"
+    },
+    {
+        id: 30,
+        name: "Reena",
+        age: 32,
+        experience: "4 Years",
+        city: "Faridabad",
+        service: "Full Time",
+        price: 320,
+        rating: 4.5,
+        photo: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce"
+    },
+
+    {
+        id: 31,
+        name: "Mala",
+        age: 35,
+        experience: "5 Years",
+        city: "Jhansi",
+        service: "House Cleaning",
+        price: 300,
+        rating: 4.6,
+        photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2"
+    },
+    {
+        id: 32,
+        name: "Sarla",
+        age: 29,
+        experience: "3 Years",
+        city: "Etawah",
+        service: "Cooking Maid",
+        price: 270,
+        rating: 4.3,
+        photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9"
+    },
+    {
+        id: 33,
+        name: "Kanchan",
+        age: 31,
+        experience: "4 Years",
+        city: "Mainpuri",
+        service: "Babysitter",
+        price: 290,
+        rating: 4.4,
+        photo: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39"
+    },
+    {
+        id: 34,
+        name: "Ganga",
+        age: 38,
+        experience: "7 Years",
+        city: "Hapur",
+        service: "Elder Care",
+        price: 360,
+        rating: 4.8,
+        photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
+    },
+    {
+        id: 35,
+        name: "Suman",
+        age: 34,
+        experience: "5 Years",
+        city: "Palwal",
+        service: "Full Time",
+        price: 330,
+        rating: 4.6,
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+    },
+
+    {
+        id: 36,
+        name: "Rukmini",
+        age: 26,
+        experience: "2 Years",
+        city: "Morena",
+        service: "House Cleaning",
+        price: 240,
+        rating: 4.0,
+        photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+    },
+    {
+        id: 37,
+        name: "Champa",
+        age: 33,
+        experience: "5 Years",
+        city: "Sawai Madhopur",
+        service: "Cooking Maid",
+        price: 300,
+        rating: 4.5,
+        photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+    },
+    {
+        id: 38,
+        name: "Rakhi",
+        age: 28,
+        experience: "3 Years",
+        city: "Bharatpur",
+        service: "Babysitter",
+        price: 270,
+        rating: 4.2,
+        photo: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1"
+    },
+    {
+        id: 39,
+        name: "Pushpa",
+        age: 37,
+        experience: "6 Years",
+        city: "Bulandshahr",
+        service: "Elder Care",
+        price: 350,
+        rating: 4.7,
+        photo: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce"
+    },
+    {
+        id: 40,
+        name: "Bhavna",
+        age: 35,
+        experience: "5 Years",
+        city: "Ballabgarh",
+        service: "Full Time",
+        price: 340,
+        rating: 4.6,
+        photo: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe"
     }
 ];
