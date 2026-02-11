@@ -31,7 +31,7 @@ const Maids = () => {
         const alreadyBooked = bookings.find(m => m.id === maid.id)
 
         if (alreadyBooked) {
-            alert("Already Booked")
+            alert("Already Hire")
             return
         }
 
@@ -44,12 +44,7 @@ const Maids = () => {
         setBookedMaids(bookings)
     }
 
-    const removemaid = (id) => {
-        const updated = bookedMaids.filter(m => m.id !== id);
 
-        setBookedMaids(updated);
-        localStorage.setItem("bookedMaids", JSON.stringify(updated))
-    }
 
     return (
         <>
@@ -73,50 +68,17 @@ const Maids = () => {
                                 {/* <Typography>{maid.photo}</Typography> */}
                                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Name: {maid.name}</Typography>
                                 <Typography variant="body1">Age: {maid.age}</Typography>
-                                <Typography variant="body1">Exp: {maid.experience}</Typography>
+                                <Typography variant="body1">Salart: {maid.salary}</Typography>
                                 <Typography variant="body1">City: {maid.city}</Typography>
+                                <Typography variant="body1">Experience: {maid.experience}</Typography>
+                                <Typography variant="body1">Address: {maid.address}</Typography>
                                 <Typography variant="body1">service: {maid.service}</Typography>
-                                <Typography variant="body1">Price: {maid.price}</Typography>
                                 <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.2 }}>Rating: {maid.rating} <Rating defaultValue={maid.rating} precision={0.1} readOnly /></Typography>
-                                <Button sx={{ bgcolor: 'black', color: 'white', mt: 2 }} onClick={() => bookmaid(maid)}>Book</Button>
+                                <Button sx={{ bgcolor: 'black', color: 'white', mt: 2 }} onClick={() => bookmaid(maid)}>Hiring</Button>
                             </CardContent>
                         </Card>
                     ))}
                 </Box>
-                <Dialog open={openBook} onClose={() => setOpenBook(false)} fullWidth>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton sx={{ ml: 0.3, width: '48px', height: '48px' }} onClick={() => setOpenBook(false)}>
-                            <ArrowBackIcon />
-                        </IconButton>
-                        <DialogTitle sx={{ width: '550px', display: 'flex', justifyContent: 'center' }}>Book Maids</DialogTitle>
-                    </Box>
-                    <DialogContent>
-                        {bookings.length === 0 ? (
-                            <Typography variant='body1' sx={{ m: 4, display: 'flex', justifyContent: 'center' }}>No Booking yet</Typography>
-                        ) : (
-                            bookings.map((book) => (
-                                <Card key={book.id} sx={{ m: 2 }}>
-                                    <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <Box>
-                                            <Typography variant="h6">Name: {book.name}</Typography>
-                                            <Typography variant="body1">Service: {book.service}</Typography>
-                                        </Box>
-                                        <Box>
-                                            <Button sx={{ bgcolor: 'black', color: 'white' }} onClick={() => removemaid(book.id)}>Remove</Button>
-                                        </Box>
-                                    </CardContent>
-                                </Card>
-                            ))
-                        )}
-
-                        {bookings.length !== 0 ? (
-                            <Button sx={{ ml: 2, bgcolor: 'black', color: 'white', width: '525px' }}>Booking</Button>
-                        ) : (
-                            null
-                        )}
-
-                    </DialogContent>
-                </Dialog>
             </Box >
         </>
     )

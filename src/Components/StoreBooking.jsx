@@ -1,0 +1,55 @@
+import React from 'react'
+
+const StoreBooking = () => {
+
+
+    const bookings = JSON.parse(localStorage.getItem("bookedMaids")) || []
+
+    const removemaid = (id) => {
+        const updated = bookedMaids.filter(m => m.id !== id);
+
+        setBookedMaids(updated);
+        localStorage.setItem("bookedMaids", JSON.stringify(updated))
+    }
+
+    return (
+        <>
+            <Dialog open={openBook} onClose={() => setOpenBook(false)} fullWidth>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <IconButton sx={{ ml: 0.3, width: '48px', height: '48px' }} onClick={() => setOpenBook(false)}>
+                        <ArrowBackIcon />
+                    </IconButton>
+                    <DialogTitle sx={{ width: '550px', display: 'flex', justifyContent: 'center' }}>Book Maids</DialogTitle>
+                </Box>
+                <DialogContent>
+                    {bookings.length === 0 ? (
+                        <Typography variant='body1' sx={{ m: 4, display: 'flex', justifyContent: 'center' }}>No Booking yet</Typography>
+                    ) : (
+                        bookings.map((book) => (
+                            <Card key={book.id} sx={{ m: 2 }}>
+                                <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <Box>
+                                        <Typography variant="h6">Name: {book.name}</Typography>
+                                        <Typography variant="body1">Service: {book.service}</Typography>
+                                    </Box>
+                                    <Box>
+                                        <Button sx={{ bgcolor: 'black', color: 'white' }} onClick={() => removemaid(book.id)}>Remove</Button>
+                                    </Box>
+                                </CardContent>
+                            </Card>
+                        ))
+                    )}
+
+                    {bookings.length !== 0 ? (
+                        <Button sx={{ ml: 2, bgcolor: 'black', color: 'white', width: '525px' }}>Booking</Button>
+                    ) : (
+                        null
+                    )}
+
+                </DialogContent>
+            </Dialog>
+        </>
+    )
+}
+
+export default StoreBooking

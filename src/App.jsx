@@ -5,6 +5,7 @@ import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Services from './Pages/Services'
 import Maids from './Pages/Maids'
+import BookingForm from './Components/BookingForm'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/services' element={<Services />} />
         <Route path='/maids' element={<Maids />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/form' element={<BookingForm />} />
       </Routes>
     </>
   )
