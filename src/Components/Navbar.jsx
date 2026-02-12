@@ -22,9 +22,9 @@ const Navbar = () => {
                         <Typography variant="h4" sx={{ pl: 2, color: 'black' }}>Maid India</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'right', gap: 2 }}>
-                        <Button sx={{ color: 'black', fontSize: 17 }} href='/'>Home</Button>
-                        <Button sx={{ color: 'black', fontSize: 17 }} href='/services'>Services</Button>
-                        <Button sx={{ color: 'black', fontSize: 17 }} href='/maids'>Maids</Button>
+                        <Button sx={{ color: 'black', fontSize: 17 }} onClick={() => navigate('/')}>Home</Button>
+                        <Button sx={{ color: 'black', fontSize: 17 }} onClick={() => navigate('/services')}>Services</Button>
+                        <Button sx={{ color: 'black', fontSize: 17 }} onClick={() => navigate('/maids')}>Maids</Button>
                     </Box>
                     <Box>
                         {!isloged && (<Button sx={{ bgcolor: 'black', color: 'white', fontSize: 17 }} onClick={() => navigate('/login')}>Login</Button>)}

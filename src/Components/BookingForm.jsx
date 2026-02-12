@@ -1,15 +1,9 @@
 import { Box, Button, Modal, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-const BookingForm = ({ openBookingForm, setOpenBookingForm }) => {
+const BookingForm = ({ openBookingForm, setOpenBookingForm, setBookings }) => {
 
-    const [formData, setFormData] = useState({
-        name: '',
-        mobile: '',
-        address: '',
-        date: '',
-        time: ''
-    })
+    const [formData, setFormData] = useState({ name: '', mobile: '', address: '', date: '', time: '' })
     const [error, setError] = useState({ name: '', mobile: '', address: '', date: '', time: '' })
 
     const handleChange = (e) => {
@@ -24,16 +18,12 @@ const BookingForm = ({ openBookingForm, setOpenBookingForm }) => {
         const newError = { name: '', mobile: '', address: '', date: '', time: '' }
 
         if (!formData.name.trim()) newError.name = "Name Requied"
-        else if (!formData.mobile.trim()) {
-            newError.mobile = "Mobile Requird"
-        }
-
+        else if (!formData.mobile.trim()) newError.mobile = "Mobile Requird"
+        else if (formData.mobile.length !== 10) newError.mobile = "Enter 10 Digits"
         else if (!formData.address.trim()) newError.address = 'Address Requird'
         else if (!formData.date.trim()) newError.date = 'Date Requird'
         else if (!formData.time.trim()) newError.time = 'Time Requird'
         else setOpenBookingForm(false) || setFormData({ ...formData, name: '', mobile: '', address: '', date: '', time: '' })
-
-        // localStorage.setItem("bookedMaids", JSON.stringify(updated))
 
         setError(newError)
         return !(newError.name || newError.mobile || newError.address || newError.date || newError.time)

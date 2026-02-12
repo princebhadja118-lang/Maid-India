@@ -35,12 +35,13 @@ const Maids = () => {
             alert("Already Hire")
             return
         }
-
         const updated = [...bookings, maid]
 
         setBookings(updated)
-        setOpenBookingForm(true)
+
         localStorage.setItem("bookedMaids", JSON.stringify(updated))
+
+        setOpenBookingForm(true)
     }
 
 
@@ -93,6 +94,7 @@ const Maids = () => {
             <BookingForm
                 openBookingForm={openBookingForm}
                 setOpenBookingForm={setOpenBookingForm}
+                setBookings={setBookings}
             />
 
         </>
