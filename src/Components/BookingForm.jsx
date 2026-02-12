@@ -10,7 +10,7 @@ const BookingForm = ({ openBookingForm, setOpenBookingForm }) => {
         date: '',
         time: ''
     })
-    const [error, setError] = useState({})
+    const [error, setError] = useState({ name: '', mobile: '', address: '', date: '', time: '' })
 
     const handleChange = (e) => {
         setFormData({
@@ -19,6 +19,25 @@ const BookingForm = ({ openBookingForm, setOpenBookingForm }) => {
         })
     }
 
+    const checkFormvalue = () => {
+
+        const newError = { name: '', mobile: '', address: '', date: '', time: '' }
+
+        if (!formData.name.trim()) newError.name = "Name Requied"
+        else if (!formData.mobile.trim()) {
+            newError.mobile = "Mobile Requird"
+        }
+
+        else if (!formData.address.trim()) newError.address = 'Address Requird'
+        else if (!formData.date.trim()) newError.date = 'Date Requird'
+        else if (!formData.time.trim()) newError.time = 'Time Requird'
+        else setOpenBookingForm(false) || setFormData({ ...formData, name: '', mobile: '', address: '', date: '', time: '' })
+
+        // localStorage.setItem("bookedMaids", JSON.stringify(updated))
+
+        setError(newError)
+        return !(newError.name || newError.mobile || newError.address || newError.date || newError.time)
+    }
 
     return (
         <>
@@ -30,6 +49,8 @@ const BookingForm = ({ openBookingForm, setOpenBookingForm }) => {
                         name='name'
                         value={formData.name}
                         onChange={handleChange}
+                        error={!!error.name}
+                        helperText={error.name}
                     />
                     <TextField
                         label='Mobile'
@@ -37,6 +58,8 @@ const BookingForm = ({ openBookingForm, setOpenBookingForm }) => {
                         type='number'
                         value={formData.mobile}
                         onChange={handleChange}
+                        error={!!error.mobile}
+                        helperText={error.mobile}
                     />
                     <TextField
                         label='Address'
@@ -44,20 +67,31 @@ const BookingForm = ({ openBookingForm, setOpenBookingForm }) => {
                         type='address'
                         value={formData.address}
                         onChange={handleChange}
+                        error={!!error.address}
+                        helperText={error.address}
                     />
                     <TextField
                         name='date'
                         type='date'
                         value={formData.date}
                         onChange={handleChange}
+                        error={!!error.date}
+                        helperText={error.date}
                     />
                     <TextField
                         type='time'
                         name='time'
                         value={formData.time}
                         onChange={handleChange}
+                        error={!!error.time}
+                        helperText={error.time}
                     />
-                    <Button sx={{ bgcolor: 'black', color: 'white' }}>Book</Button>
+                    <Button
+                        sx={{ bgcolor: 'black', color: 'white' }}
+                        onClick={() => checkFormvalue()}
+                    >
+                        Book
+                    </Button>
                 </Box>
             </Modal>
         </>

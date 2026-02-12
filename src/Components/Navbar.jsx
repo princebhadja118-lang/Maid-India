@@ -25,7 +25,6 @@ const Navbar = () => {
                         <Button sx={{ color: 'black', fontSize: 17 }} href='/'>Home</Button>
                         <Button sx={{ color: 'black', fontSize: 17 }} href='/services'>Services</Button>
                         <Button sx={{ color: 'black', fontSize: 17 }} href='/maids'>Maids</Button>
-                        <Button sx={{ color: 'black', fontSize: 17 }} href='/form' >Form</Button>
                     </Box>
                     <Box>
                         {!isloged && (<Button sx={{ bgcolor: 'black', color: 'white', fontSize: 17 }} onClick={() => navigate('/login')}>Login</Button>)}

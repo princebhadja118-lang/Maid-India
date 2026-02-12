@@ -10,7 +10,7 @@ const Login = () => {
     const [userEmail, setUserEmail] = useState('')
     const [userPass, setUserPass] = useState('')
     const [rError, setRError] = useState({ Rname: '', Remail: '', Rpass: '' })
-    const [logerror, setLogError] = useState({ email: '', pass: '', general: '' })
+    const [logError, setLogError] = useState({ email: '', pass: '', general: '' })
     const [showForms, setShowForms] = useState(false)
 
     const navigate = useNavigate()
@@ -33,10 +33,16 @@ const Login = () => {
         setRegData({ ...regData, regName: '', regEmail: '', regPass: '' })
     }
 
+    const clearRegister = () => {
+        setShowForms(false)
+        setRegData({ ...regData, regName: '', regEmail: '', regPass: '' })
+        setRError({ ...rError, Rname: '', Remail: '', Rpass: '' })
+    }
+
     const logvalidation = () => {
         const newError = { email: '', pass: '', general: '' }
         if (!userEmail.trim()) newError.email = 'Email is required'
-        if (!userPass) newError.pass = 'Password is required'
+        else if (!userPass) newError.pass = 'Password is required'
         setLogError(newError)
         return !newError.email && !newError.pass
     }
@@ -58,7 +64,12 @@ const Login = () => {
         }
     }
 
-
+    const clearlogin = () => {
+        setShowForms(true)
+        setUserEmail('')
+        setUserPass('')
+        setLogError({ ...logError, email: '', pass: '', general: '' })
+    }
 
     return (
         <>
@@ -66,14 +77,14 @@ const Login = () => {
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <IconButton
                         sx={{ bgcolor: !showForms ? 'lightgreen' : '#fff', color: '#000', borderRadius: 0, width: 150, height: 200, ':hover': { bgcolor: !showForms ? 'lightgreen' : '#fff', color: '#000' }, display: 'flex', flexDirection: 'column' }}
-                        onClick={() => setShowForms(false)}
+                        onClick={clearRegister}
                     >
                         <AccountCircleIcon />
                         Login
                     </IconButton>
                     <IconButton
                         sx={{ bgcolor: showForms ? 'lightgreen' : '#fff', color: '#000', borderRadius: 0, width: 150, height: 200, borderTop: 'none', ':hover': { bgcolor: showForms ? 'lightgreen' : '#fff', color: '#000' }, display: 'flex', flexDirection: 'column' }}
-                        onClick={() => setShowForms(true)}
+                        onClick={clearlogin}
                     >
                         <BorderColorOutlinedIcon />
                         Register
@@ -89,8 +100,8 @@ const Login = () => {
                             type='email'
                             value={userEmail}
                             onChange={(e) => setUserEmail(e.target.value)}
-                            error={!!logerror.email}
-                            helperText={logerror.email}
+                            error={!!logError.email}
+                            helperText={logError.email}
                             fullWidth
                         />
                         <TextField
@@ -98,11 +109,11 @@ const Login = () => {
                             type='password'
                             value={userPass}
                             onChange={(p) => setUserPass(p.target.value)}
-                            error={!!logerror.pass}
-                            helperText={logerror.pass}
+                            error={!!logError.pass}
+                            helperText={logError.pass}
                             fullWidth
                         />
-                        {logerror.general && <Typography color="error" sx={{ mb: 2 }}>{logerror.general}</Typography>}
+                        {logError.general && <Typography color="error" sx={{ mb: 2 }}>{logError.general}</Typography>}
                         <Button sx={{ bgcolor: 'black', color: 'white', height: 40 }} onClick={logsuccess} fullWidth> Sign In</Button>
                         <Typography fontSize={16} color='gray'>
                             New here? Create an account
