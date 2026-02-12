@@ -1,19 +1,19 @@
 import React from 'react'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { Box, Button, Card, CardContent, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material'
 
-const StoreBooking = () => {
-
-
-    const bookings = JSON.parse(localStorage.getItem("bookedMaids")) || []
+const StoreBooking = ({ openBook, setOpenBook, bookings, setBookings }) => {
 
     const removemaid = (id) => {
-        const updated = bookedMaids.filter(m => m.id !== id);
+        const updated = bookings.filter(m => m.id !== id)
 
-        setBookedMaids(updated);
+        setBookings(updated)
         localStorage.setItem("bookedMaids", JSON.stringify(updated))
     }
 
     return (
         <>
+
             <Dialog open={openBook} onClose={() => setOpenBook(false)} fullWidth>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton sx={{ ml: 0.3, width: '48px', height: '48px' }} onClick={() => setOpenBook(false)}>

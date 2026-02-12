@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { maiddetails } from './MaidDetails'
-import { Badge, Box, Button, Card, CardContent, Dialog, DialogContent, DialogTitle, IconButton, Rating } from '@mui/material'
+import { Badge, Box, Button, Card, CardContent, IconButton, Rating } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import StoreBooking from '../Components/StoreBooking'
 
 const Maids = () => {
-    const navigate = useNavigate()
-    const [bookMaid, setBookMaid] = useState(0)
-    const [bookedMaids, setBookedMaids] = useState([])
-    const [openBook, setOpenBook] = useState(false)
 
-    useEffect(() => {
-        const stored = JSON.parse(localStorage.getItem("bookedMaids")) || []
-        setBookMaid(stored.length)
-    }, [])
+    const navigate = useNavigate()
+
+    const [bookings, setBookings] = useState([])
+    const [openBook, setOpenBook] = useState(false)
 
     const islogged = localStorage.getItem('logged')
 
-    const bookings = JSON.parse(localStorage.getItem("bookedMaids")) || []
+    useEffect(() => {
+        const stored = JSON.parse(localStorage.getItem("bookedMaids")) || []
+        setBookings(stored)
+    }, [])
 
-    const bookmaid = (maid) => {
+    // const bookings = JSON.parse(localStorage.getItem("bookedMaids")) || []
+
+    const bookmaids = (maid) => {
 
         if (islogged !== 'true') {
             navigate('/login')
@@ -37,20 +38,19 @@ const Maids = () => {
 
         const updated = [...bookings, maid]
 
-
+        setBookings(updated)
         localStorage.setItem("bookedMaids", JSON.stringify(updated))
-
-        setBookMaid(updated.length)
-        setBookedMaids(bookings)
     }
 
 
 
     return (
         <>
-            <Box sx={{ bgcolor: 'orange' }}>
+            <Box sx={{ bgcolor: 'orange' }} >
                 <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                    <Typography variant="h2" sx={{ width: '95%', display: 'flex', justifyContent: 'center', p: 2, mb: 4, mt: 4 }}>Our Trusted Maids</Typography>
+                    <Typography variant="h2" sx={{ width: '95%', display: 'flex', justifyContent: 'center', p: 2, mb: 4, mt: 4 }}>
+                        Our Trusted Maids
+                    </Typography>
                     <IconButton
                         sx={{ bgcolor: 'white', height: 40, width: 40, ":hover": { bgcolor: 'white' } }}
                         onClick={() => setOpenBook(true)}
@@ -74,12 +74,21 @@ const Maids = () => {
                                 <Typography variant="body1">Address: {maid.address}</Typography>
                                 <Typography variant="body1">service: {maid.service}</Typography>
                                 <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.2 }}>Rating: {maid.rating} <Rating defaultValue={maid.rating} precision={0.1} readOnly /></Typography>
-                                <Button sx={{ bgcolor: 'black', color: 'white', mt: 2 }} onClick={() => bookmaid(maid)}>Hiring</Button>
+                                <Button sx={{ bgcolor: 'black', color: 'white', mt: 2 }} onClick={() => bookmaids(maid)}>Hire</Button>
                             </CardContent>
                         </Card>
                     ))}
                 </Box>
             </Box >
+
+
+            < StoreBooking
+                bookings={bookings}
+                setBookings={setBookings}
+                openBook={openBook}
+                setOpenBook={setOpenBook}
+            />
+
         </>
     )
 }
