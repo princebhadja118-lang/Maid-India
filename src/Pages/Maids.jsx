@@ -5,13 +5,15 @@ import { Badge, Box, Button, Card, CardContent, IconButton, Rating } from '@mui/
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
 import StoreBooking from '../Components/StoreBooking'
+import BookingForm from '../Components/BookingForm'
 
 const Maids = () => {
 
     const navigate = useNavigate()
 
     const [bookings, setBookings] = useState([])
-    const [openBook, setOpenBook] = useState(false)
+    const [openDialog, setOpenDialog] = useState(false)
+    const [openBookingForm, setOpenBookingForm] = useState(false)
 
     const islogged = localStorage.getItem('logged')
 
@@ -20,9 +22,7 @@ const Maids = () => {
         setBookings(stored)
     }, [])
 
-    // const bookings = JSON.parse(localStorage.getItem("bookedMaids")) || []
-
-    const bookmaids = (maid) => {
+    const hiremaids = (maid) => {
 
         if (islogged !== 'true') {
             navigate('/login')
@@ -39,6 +39,7 @@ const Maids = () => {
         const updated = [...bookings, maid]
 
         setBookings(updated)
+        setOpenBookingForm(true)
         localStorage.setItem("bookedMaids", JSON.stringify(updated))
     }
 
@@ -53,7 +54,7 @@ const Maids = () => {
                     </Typography>
                     <IconButton
                         sx={{ bgcolor: 'white', height: 40, width: 40, ":hover": { bgcolor: 'white' } }}
-                        onClick={() => setOpenBook(true)}
+                        onClick={() => setOpenDialog(true)}
                     >
                         <Badge badgeContent={islogged === 'true' ? bookings.length : 0} color='success'>
                             <AddIcon color='active' sx={{ fontSize: 30, fontWeight: 'bold' }} />
@@ -74,7 +75,7 @@ const Maids = () => {
                                 <Typography variant="body1">Address: {maid.address}</Typography>
                                 <Typography variant="body1">service: {maid.service}</Typography>
                                 <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.2 }}>Rating: {maid.rating} <Rating defaultValue={maid.rating} precision={0.1} readOnly /></Typography>
-                                <Button sx={{ bgcolor: 'black', color: 'white', mt: 2 }} onClick={() => bookmaids(maid)}>Hire</Button>
+                                <Button sx={{ bgcolor: 'black', color: 'white', mt: 2 }} onClick={() => hiremaids(maid)}>Hire</Button>
                             </CardContent>
                         </Card>
                     ))}
@@ -85,8 +86,13 @@ const Maids = () => {
             < StoreBooking
                 bookings={bookings}
                 setBookings={setBookings}
-                openBook={openBook}
-                setOpenBook={setOpenBook}
+                openDialog={openDialog}
+                setOpenDialog={setOpenDialog}
+            />
+
+            <BookingForm
+                openBookingForm={openBookingForm}
+                setOpenBookingForm={setOpenBookingForm}
             />
 
         </>

@@ -2,7 +2,7 @@ import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { Box, Button, Card, CardContent, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material'
 
-const StoreBooking = ({ openBook, setOpenBook, bookings, setBookings }) => {
+const StoreBooking = ({ openDialog, setOpenDialog, bookings, setBookings }) => {
 
     const removemaid = (id) => {
         const updated = bookings.filter(m => m.id !== id)
@@ -14,9 +14,9 @@ const StoreBooking = ({ openBook, setOpenBook, bookings, setBookings }) => {
     return (
         <>
 
-            <Dialog open={openBook} onClose={() => setOpenBook(false)} fullWidth>
+            <Dialog open={openDialog} onClose={() => setOpenDialog(false)} fullWidth>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <IconButton sx={{ ml: 0.3, width: '48px', height: '48px' }} onClick={() => setOpenBook(false)}>
+                    <IconButton sx={{ ml: 0.3, width: '48px', height: '48px' }} onClick={() => setOpenDialog(false)}>
                         <ArrowBackIcon />
                     </IconButton>
                     <DialogTitle sx={{ width: '550px', display: 'flex', justifyContent: 'center' }}>Book Maids</DialogTitle>
