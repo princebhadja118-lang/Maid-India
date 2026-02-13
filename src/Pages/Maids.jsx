@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { maiddetails } from './MaidDetails'
-import { Badge, Box, Button, Card, CardContent, IconButton, Rating } from '@mui/material'
+import { Badge, Box, Button, Card, CardContent, IconButton, Rating, Pagination } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
 import StoreBooking from '../Components/StoreBooking'
@@ -14,6 +14,7 @@ const Maids = () => {
     const [bookings, setBookings] = useState([])
     const [openDialog, setOpenDialog] = useState(false)
     const [openBookingForm, setOpenBookingForm] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const islogged = localStorage.getItem('logged')
 
@@ -44,7 +45,17 @@ const Maids = () => {
         setOpenBookingForm(true)
     }
 
+    const itemsPerPage = 8
 
+    const lastIndex = currentPage * itemsPerPage
+    const firstIndex = lastIndex - itemsPerPage
+
+    const currentItems = maiddetails.slice(firstIndex, lastIndex)
+    const totalPages = Math.ceil(maiddetails.length / itemsPerPage)
+
+    const handleChange = (event, value) => {
+        setCurrentPage(value)
+    }
 
     return (
         <>
@@ -62,10 +73,10 @@ const Maids = () => {
                         </Badge>
                     </IconButton>
                 </Box>
-                <Box sx={{ p: 3, display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 2 }}>
+                <Box sx={{ p: 3, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
 
-                    {maiddetails.map((maid) => (
-                        <Card key={maid.id} sx={{ maxWidth: 250 }}>
+                    {currentItems.map((maid) => (
+                        <Card key={maid.id} sx={{ maxWidth: 400 }}>
                             <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                                 {/* <Typography>{maid.photo}</Typography> */}
                                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Name: {maid.name}</Typography>
@@ -80,6 +91,16 @@ const Maids = () => {
                             </CardContent>
                         </Card>
                     ))}
+                </Box>
+                <Box sx={{ p: 4, width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handleChange}
+                        size='large'
+                        variant='outlined'
+                        shape='rounded'
+                    />
                 </Box>
             </Box >
 

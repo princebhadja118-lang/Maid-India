@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Box, Button, Paper, TextField, Typography, IconButton } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { Box, Button, Paper, TextField, Typography, IconButton, ToggleButtonGroup } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 
@@ -73,88 +73,89 @@ const Login = () => {
 
     return (
         <>
-            <Box sx={{ pt: 10, display: 'flex', justifyContent: 'center', bgcolor: 'orange', height: 600 }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <IconButton
-                        sx={{ bgcolor: !showForms ? 'lightgreen' : '#fff', color: '#000', borderRadius: 0, width: 150, height: 200, ':hover': { bgcolor: !showForms ? 'lightgreen' : '#fff', color: '#000' }, display: 'flex', flexDirection: 'column' }}
-                        onClick={clearRegister}
-                    >
-                        <AccountCircleIcon />
-                        Login
-                    </IconButton>
-                    <IconButton
-                        sx={{ bgcolor: showForms ? 'lightgreen' : '#fff', color: '#000', borderRadius: 0, width: 150, height: 200, borderTop: 'none', ':hover': { bgcolor: showForms ? 'lightgreen' : '#fff', color: '#000' }, display: 'flex', flexDirection: 'column' }}
-                        onClick={clearlogin}
-                    >
-                        <BorderColorOutlinedIcon />
-                        Register
-                    </IconButton>
+            <Box sx={{ pt: 10, display: 'flex', justifyContent: 'center', bgcolor: 'orange', height: 700 }}>
+                <Box sx={{ bgcolor: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: 600, height: 500 }}>
+
+                    <ToggleButtonGroup sx={{ width: '100%', display: 'flex', justifyContent: 'end', mr: 10 }}>
+                        <Button sx={{ color: 'black', borderBottom: !showForms ? '2px solid blue' : 'none', borderRadius: 0, fontSize: 18, }} onClick={clearRegister} >
+                            Sign in
+                        </Button>
+                        <Button sx={{ color: 'black', borderBottom: showForms ? '2px solid blue' : 'none', borderRadius: 0, fontSize: 18, }} onClick={clearlogin}>
+                            Sign up
+                        </Button>
+                    </ToggleButtonGroup>
+
+
+                    {!showForms && (
+                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
+                            <Typography variant="h5">Login to your account</Typography>
+                            <Typography variant="p" color='gray'>Welcome back! Please enter your details.</Typography>
+                            <TextField
+                                variant='standard'
+                                label='Email'
+                                type='email'
+                                value={userEmail}
+                                onChange={(e) => setUserEmail(e.target.value)}
+                                error={!!logError.email}
+                                helperText={logError.email}
+                                fullWidth
+                            />
+                            <TextField
+                                variant='standard'
+                                label='Password'
+                                type='password'
+                                value={userPass}
+                                onChange={(p) => setUserPass(p.target.value)}
+                                error={!!logError.pass}
+                                helperText={logError.pass}
+                                fullWidth
+                            />
+                            {logError.general && <Typography color="error" sx={{ mb: 2 }}>{logError.general}</Typography>}
+                            <Button sx={{ bgcolor: 'black', color: 'white', height: 40, mt: 2 }} onClick={logsuccess} fullWidth> Sign In</Button>
+                            <Typography fontSize={16} color='gray'>
+                                New here? <Link onClick={() => setShowForms(true)}>Create an account </Link>
+                            </Typography>
+                        </Box>
+                    )}
+
+
+                    {showForms && (
+                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
+                            <Typography variant="h5">Create Account</Typography>
+                            <TextField
+                                variant='standard'
+                                label="Name"
+                                value={regData.regName}
+                                onChange={(n) => setRegData({ ...regData, regName: n.target.value })}
+                                error={!!rError.Rname}
+                                helperText={rError.Rname}
+                                fullWidth
+                            />
+                            <TextField
+                                variant='standard'
+                                label='Email'
+                                type='email'
+                                value={regData.regEmail}
+                                onChange={(e) => setRegData({ ...regData, regEmail: e.target.value })}
+                                error={!!rError.Remail}
+                                helperText={rError.Remail}
+                                fullWidth
+                            />
+                            <TextField
+                                variant='standard'
+                                label='Password'
+                                type='password'
+                                value={regData.regPass}
+                                onChange={(p) => setRegData({ ...regData, regPass: p.target.value })}
+                                error={!!rError.Rpass}
+                                helperText={rError.Rpass}
+                                fullWidth
+                            />
+                            <Button sx={{ bgcolor: 'black', color: 'white', height: 40, mt: 2 }} onClick={regStoreData} fullWidth>Register</Button>
+                        </Box>
+                    )}
                 </Box>
-
-                {!showForms && (
-                    <Paper sx={{ borderLeft: '1px solid gray', width: '100%', maxWidth: 600, borderRadius: 0, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
-                        <Typography variant="h5">Login to your account</Typography>
-                        <Typography variant="p" color='gray'>Welcome back! Please enter your details.</Typography>
-                        <TextField
-                            label='Email'
-                            type='email'
-                            value={userEmail}
-                            onChange={(e) => setUserEmail(e.target.value)}
-                            error={!!logError.email}
-                            helperText={logError.email}
-                            fullWidth
-                        />
-                        <TextField
-                            label='Password'
-                            type='password'
-                            value={userPass}
-                            onChange={(p) => setUserPass(p.target.value)}
-                            error={!!logError.pass}
-                            helperText={logError.pass}
-                            fullWidth
-                        />
-                        {logError.general && <Typography color="error" sx={{ mb: 2 }}>{logError.general}</Typography>}
-                        <Button sx={{ bgcolor: 'black', color: 'white', height: 40 }} onClick={logsuccess} fullWidth> Sign In</Button>
-                        <Typography fontSize={16} color='gray'>
-                            New here? Create an account
-                        </Typography>
-                    </Paper>
-                )}
-
-
-                {showForms && (
-                    <Paper sx={{ borderLeft: '1px solid gray', width: '100%', maxWidth: 600, borderRadius: 0, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
-                        <Typography variant="h5">Create Account</Typography>
-                        <TextField
-                            label="Name"
-                            value={regData.regName}
-                            onChange={(n) => setRegData({ ...regData, regName: n.target.value })}
-                            error={!!rError.Rname}
-                            helperText={rError.Rname}
-                            fullWidth
-                        />
-                        <TextField
-                            label='Email'
-                            type='email'
-                            value={regData.regEmail}
-                            onChange={(e) => setRegData({ ...regData, regEmail: e.target.value })}
-                            error={!!rError.Remail}
-                            helperText={rError.Remail}
-                            fullWidth
-                        />
-                        <TextField
-                            label='Password'
-                            type='password'
-                            value={regData.regPass}
-                            onChange={(p) => setRegData({ ...regData, regPass: p.target.value })}
-                            error={!!rError.Rpass}
-                            helperText={rError.Rpass}
-                            fullWidth
-                        />
-                        <Button sx={{ bgcolor: 'black', color: 'white', height: 40 }} onClick={regStoreData} fullWidth>Register</Button>
-                    </Paper>
-                )}
-            </Box>
+            </Box >
         </>
     )
 }
