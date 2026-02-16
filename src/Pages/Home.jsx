@@ -1,6 +1,5 @@
 import { Box, Button, Card, Container, Rating, Typography } from '@mui/material'
 import React from 'react'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
@@ -31,12 +30,12 @@ const Home = () => {
         {
             name: "Babysitter",
             text: 'Caring for your child with love.',
-            img: "/src/assets/"
+            img: "/src/assets/Baby.png"
         },
         {
             name: "Elder Care",
             text: 'Support and care for the elderly.',
-            img: "/src/assets/"
+            img: "/src/assets/old.png"
         }
     ]
 
@@ -59,7 +58,7 @@ const Home = () => {
                     <img src='/src/assets/HomeMaidPhoto.jpg' style={{ height: 500 }} alt='Home Main' />
                 </Box>
                 <Container sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', pt: 5 }}>
-                    <Typography variant="h4" fontWeight='bold'>
+                    <Typography variant="h4" fontWeight='bold' mb={4}>
                         Our Services
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 3 }}>
@@ -67,13 +66,12 @@ const Home = () => {
                             <Card sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: "center", borderRadius: 4, boxShadow: 4, width: 250 }}>
                                 <img src={s.img} width="100" className='flex justify-center' />
                                 <Typography variant='h5' fontWeight='bold' mt={1}>{s.name}</Typography>
-                                <Typography variant="body1" mt={2}>{s.text}</Typography>
+                                <Typography variant="body1" mt={1}>{s.text}</Typography>
                             </Card>
                         ))}
                     </Box>
                     <Button onClick={() => navigate('/services')} sx={{ width: 210, bgcolor: '#fb8500', color: 'white', borderRadius: 10, fontWeight: 'bold', boxShadow: 4, m: 3 }}>
-                        View All Services
-                        <KeyboardArrowRightIcon />
+                        View All Services &gt;
                     </Button>
                 </Container>
                 <Container sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', pt: 5 }}>
@@ -84,14 +82,14 @@ const Home = () => {
                                 <img src='/src/assets/verification.png' className={'h-10 w-10 bgcolor-white'} />
                                 Verified <br /> Maids
                             </Typography>
-                            <Typography variant="body1" sx={{ pt: 2 }}>All our maids are thoroughly vetted and verified.</Typography>
+                            <Typography variant="body1" sx={{ pt: 1 }}>All our maids are thoroughly vetted and verified.</Typography>
                         </Card>
                         <Card sx={{ p: 3 }}>
                             <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 2, fontWeight: 'bold' }}>
                                 <img src='/src/assets/Ruppy.png' className={'h-10 w-10 bgcolor-white'} />
                                 Affordable Pricing
                             </Typography>
-                            <Typography variant="body1" sx={{ pt: 2 }}>Quality services at prices that fit your budget. </Typography>
+                            <Typography variant="body1" sx={{ pt: 1 }}>Quality services at prices that fit your budget. </Typography>
                         </Card>
                         <Card sx={{ p: 3 }}>
                             <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 2, fontWeight: 'bold' }}>
@@ -101,30 +99,30 @@ const Home = () => {
                                     <Rating defaultValue={5} readOnly size='small' />
                                 </Box>
                             </Typography>
-                            <Typography variant="body1" sx={{ pt: 2 }}>Round-the-clock dedicated customer support.</Typography>
+                            <Typography variant="body1" sx={{ pt: 1 }}>Round-the-clock dedicated customer support.</Typography>
                         </Card>
                         <Card sx={{ p: 3 }}>
                             <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1, fontWeight: 'bold' }}>
                                 <img src='/src/assets/bgcheked.png' className={'h-15 w-15 bgcolor-white'} />
-                                Background Check
+                                Background Checked
                             </Typography>
-                            <Typography variant="body1" sx={{ pt: 2 }}>Comprehensive background checked for all staf.</Typography>
+                            <Typography variant="body1" sx={{ pt: 1 }}>Comprehensive background checked for all staf.</Typography>
                         </Card>
                     </Box>
                     <Button onClick={() => navigate('/services')} sx={{ width: 210, bgcolor: 'orange', color: 'white', borderRadius: 10, fontWeight: 'bold', boxShadow: 4, m: 3 }}>
-                        View All Services
-                        <KeyboardArrowRightIcon />
+                        View All Services &gt;
                     </Button>
                 </Container>
                 <Container sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', pt: 5 }}>
                     <Typography variant="h4" fontWeight='bold'>Meet Our Trusted Maids</Typography>
-                </Container>
-                <Box>
 
-                </Box>
-                <Button sx={{ bgcolor: 'lightyellow' }}>
-                    View All Maids <KeyboardArrowRightIcon />
-                </Button>
+                    <Box>
+
+                    </Box>
+                    <Button onClick={() => navigate('/maids')} sx={{ width: 210, bgcolor: '#fb8500', color: 'white', borderRadius: 10, fontWeight: 'bold', boxShadow: 4, m: 3 }}>
+                        View All Maids &gt;
+                    </Button>
+                </Container>
             </Box >
         </>
     )

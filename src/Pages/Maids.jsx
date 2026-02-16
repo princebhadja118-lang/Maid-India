@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
-import { maiddetails } from './MaidDetails'
+import { maiddetails } from '../Maids data/MaidDetails'
 import { Badge, Box, Button, Card, CardContent, IconButton, Rating, Pagination } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
