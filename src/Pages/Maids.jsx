@@ -4,8 +4,8 @@ import { maiddetails } from './MaidDetails'
 import { Badge, Box, Button, Card, CardContent, IconButton, Rating, Pagination } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
-import StoreBooking from '../Components/StoreBooking'
-import BookingForm from '../Components/BookingForm'
+import StoreBooking from '../Maids data/StoreBooking'
+import BookingForm from '../Maids data/BookingForm'
 
 const Maids = () => {
 
@@ -76,7 +76,7 @@ const Maids = () => {
                 <Box sx={{ p: 3, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
 
                     {currentItems.map((maid) => (
-                        <Card key={maid.id} sx={{ maxWidth: 400 }}>
+                        <Card key={maid.id} sx={{ maxWidth: 400, boxshadow: '0 10px 25px rgba(0,0,0,.15)' }}>
                             <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                                 {/* <Typography>{maid.photo}</Typography> */}
                                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Name: {maid.name}</Typography>
@@ -86,12 +86,15 @@ const Maids = () => {
                                 <Typography variant="body1">Experience: {maid.experience}</Typography>
                                 <Typography variant="body1">Address: {maid.address}</Typography>
                                 <Typography variant="body1">service: {maid.service}</Typography>
-                                <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.2 }}>Rating: {maid.rating} <Rating defaultValue={maid.rating} precision={0.1} readOnly /></Typography>
+                                <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.2 }}>
+                                    Rating: {maid.rating} <Rating defaultValue={maid.rating} precision={0.1} readOnly />
+                                </Typography>
                                 <Button sx={{ bgcolor: 'black', color: 'white', mt: 2 }} onClick={() => hiremaids(maid)}>Hire</Button>
                             </CardContent>
                         </Card>
                     ))}
                 </Box>
+
                 <Box sx={{ p: 4, width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <Pagination
                         count={totalPages}

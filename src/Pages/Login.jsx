@@ -73,7 +73,7 @@ const Login = () => {
 
     return (
         <>
-            <Box sx={{ pt: 10, display: 'flex', justifyContent: 'center', bgcolor: 'orange', height: 700 }}>
+            <Box sx={{ pt: 5, pb: 5, display: 'flex', justifyContent: 'center', bgcolor: 'orange' }}>
                 <Box sx={{ bgcolor: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: 600, height: 500 }}>
 
                     <ToggleButtonGroup sx={{ width: '100%', display: 'flex', justifyContent: 'end', mr: 10 }}>
@@ -87,7 +87,7 @@ const Login = () => {
 
 
                     {!showForms && (
-                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
+                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
                             <Typography variant="h5">Login to your account</Typography>
                             <Typography variant="p" color='gray'>Welcome back! Please enter your details.</Typography>
                             <TextField
@@ -120,7 +120,7 @@ const Login = () => {
 
 
                     {showForms && (
-                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
+                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
                             <Typography variant="h5">Create Account</Typography>
                             <TextField
                                 variant='standard'
