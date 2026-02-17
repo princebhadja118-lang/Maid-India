@@ -1,42 +1,46 @@
 import React, { useState } from 'react'
-import { Box, Button, Paper, TextField, Typography, IconButton, ToggleButtonGroup } from '@mui/material'
+import { Box, Button, TextField, Typography, IconButton, ToggleButtonGroup } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 
 const Login = () => {
 
-    const [regData, setRegData] = useState({ regName: '', regEmail: '', regPass: '' })
+    const [regData, setRegData] = useState({ firstName: '', lastName: '', Rnum: '', regEmail: '', regPass: '' })
     const [userEmail, setUserEmail] = useState('')
     const [userPass, setUserPass] = useState('')
-    const [rError, setRError] = useState({ Rname: '', Remail: '', Rpass: '' })
+    const [rError, setRError] = useState({ RFname: '', RLname: '', Rnum: '', Remail: '', Rpass: '' })
     const [logError, setLogError] = useState({ email: '', pass: '', general: '' })
     const [showForms, setShowForms] = useState(false)
 
     const navigate = useNavigate()
 
     const regvalidation = () => {
-        const newError = { Rname: '', Remail: '', Rpass: '' }
-        if (!regData.regName.trim()) newError.Rname = 'Name is Requird'
+        const newError = { RFname: '', RLname: '', Rnum: '', Remail: '', Rpass: '' }
+        if (!regData.firstName.trim()) newError.RFname = 'First Name is Requird.'
+        else if (!regData.lastName.trim()) newError.RLname = 'Last Name is Requird.'
+        else if (!regData.Rnum.trim()) newError.Rnum = 'Number is Requird.'
+        else if (regData.Rnum.length != 10) newError.Rnum = 'Enter 10 Digits.'
         else if (!regData.regEmail.trim()) newError.Remail = 'Email is Requird.'
-        else if (!regData.regPass.trim()) newError.Rpass = 'Password is Requird'
+        else if (!regData.regPass.trim()) newError.Rpass = 'Password is Requird.'
         setRError(newError)
-        return !(newError.Rname || newError.Remail || newError.Rpass)
+        return !(newError.RFname || newError.RLname || newError.Rnum || newError.Remail || newError.Rpass)
     }
 
     const regStoreData = () => {
         if (!regvalidation()) return
-        localStorage.setItem('Name', regData.regName)
+        localStorage.setItem('FirstName', regData.firstName)
+        localStorage.setItem('LastName', regData.lastName)
+        localStorage.setItem('Mobile', regData.Rnum)
         localStorage.setItem('Email', regData.regEmail)
         localStorage.setItem('Pass', regData.regPass)
         setShowForms(false)
-        setRegData({ ...regData, regName: '', regEmail: '', regPass: '' })
+        setRegData({ ...regData, firstName: '', lastName: '', Rnum: '', regEmail: '', regPass: '' })
+
     }
 
     const clearRegister = () => {
         setShowForms(false)
-        setRegData({ ...regData, regName: '', regEmail: '', regPass: '' })
-        setRError({ ...rError, Rname: '', Remail: '', Rpass: '' })
+        setRegData({ ...regData, firstName: '', lastName: '', Rnum: '', regEmail: '', regPass: '' })
+        setRError({ ...rError, RFname: '', RLname: '', Rnum: '', Remail: '', Rpass: '' })
     }
 
     const logvalidation = () => {
@@ -120,15 +124,33 @@ const Login = () => {
 
 
                     {showForms && (
-                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 2, gap: 2 }}>
+                        <Box sx={{ width: '100%', maxWidth: 500, borderRadius: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', p: 1, gap: 2 }}>
                             <Typography variant="h5">Create Account</Typography>
                             <TextField
                                 variant='standard'
-                                label="Name"
-                                value={regData.regName}
-                                onChange={(n) => setRegData({ ...regData, regName: n.target.value })}
-                                error={!!rError.Rname}
-                                helperText={rError.Rname}
+                                label="First Name"
+                                value={regData.firstName}
+                                onChange={(n) => setRegData({ ...regData, firstName: n.target.value })}
+                                error={!!rError.RFname}
+                                helperText={rError.RFname}
+                                fullWidth
+                            />
+                            <TextField
+                                variant='standard'
+                                label='Last Name'
+                                value={regData.lastName}
+                                onChange={(n) => setRegData({ ...regData, lastName: n.target.value })}
+                                error={!!rError.RLname}
+                                helperText={rError.RLname}
+                                fullWidth
+                            />
+                            <TextField
+                                variant='standard'
+                                label='Mobile'
+                                value={regData.Rnum}
+                                onChange={(n) => setRegData({ ...regData, Rnum: n.target.value })}
+                                error={!!rError.Rnum}
+                                helperText={rError.Rnum}
                                 fullWidth
                             />
                             <TextField

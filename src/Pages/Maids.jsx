@@ -59,29 +59,36 @@ const Maids = () => {
 
     return (
         <>
-            <Box sx={{ bgcolor: 'orange' }} >
-                <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                    <Typography variant="h2" sx={{ width: '95%', display: 'flex', justifyContent: 'center', p: 2, mb: 4, mt: 4 }}>
-                        Our Trusted Maids
+            <Box sx={{ bgcolor: "#FFA800" }} >
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', mt: 4 }}>
+                        <Typography variant="h3" sx={{ width: '95%', display: 'flex', justifyContent: 'center', p: 2 }}>
+                            Our Trusted Maids
+                        </Typography>
+                        <IconButton
+                            sx={{ bgcolor: 'white', height: 40, width: 40, ":hover": { bgcolor: 'white' } }}
+                            onClick={() => setOpenDialog(true)}
+                        >
+                            <Badge badgeContent={islogged === 'true' ? bookings.length : 0} color='success'>
+                                <AddIcon color='active' sx={{ fontSize: 30 }} />
+                            </Badge>
+                        </IconButton>
+                    </Box>
+                    <Typography variant="body1" fontSize={20}>
+                        Professional maid services for <b>your daily needs.</b>
                     </Typography>
-                    <IconButton
-                        sx={{ bgcolor: 'white', height: 40, width: 40, ":hover": { bgcolor: 'white' } }}
-                        onClick={() => setOpenDialog(true)}
-                    >
-                        <Badge badgeContent={islogged === 'true' ? bookings.length : 0} color='success'>
-                            <AddIcon color='active' sx={{ fontSize: 30, fontWeight: 'bold' }} />
-                        </Badge>
-                    </IconButton>
+                    <Typography variant="body1" mt={3}>
+                        Home &gt; <b>Services</b>
+                    </Typography>
                 </Box>
-                <Box sx={{ p: 3, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
-
+                <Box sx={{ width: '100%', maxwidth: 1200, p: 3, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', justifyContent: 'center', gap: 2 }}>
                     {currentItems.map((maid) => (
                         <Card key={maid.id} sx={{ maxWidth: 400, boxshadow: '0 10px 25px rgba(0,0,0,.15)' }}>
                             <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                                 {/* <Typography>{maid.photo}</Typography> */}
-                                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Name: {maid.name}</Typography>
+                                <Typography variant="h6" sx={{ fontWeight: 'bold', pb: 0.5 }}>Name: {maid.name}</Typography>
                                 <Typography variant="body1">Age: {maid.age}</Typography>
-                                <Typography variant="body1">Salart: {maid.salary}</Typography>
+                                <Typography variant="body1">Salary: {maid.salary}</Typography>
                                 <Typography variant="body1">City: {maid.city}</Typography>
                                 <Typography variant="body1">Experience: {maid.experience}</Typography>
                                 <Typography variant="body1">Address: {maid.address}</Typography>

@@ -32,11 +32,7 @@ const Home = () => {
             text: 'Caring for your child with love.',
             img: "/src/assets/Baby.png"
         },
-        {
-            name: "Elder Care",
-            text: 'Support and care for the elderly.',
-            img: "/src/assets/old.png"
-        }
+
     ]
 
     return (
@@ -63,7 +59,7 @@ const Home = () => {
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 3 }}>
                         {services.map((s) => (
-                            <Card sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: "center", borderRadius: 4, boxShadow: 4, width: 250 }}>
+                            <Card key={s.name} sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: "center", borderRadius: 4, boxShadow: 4, width: 250 }}>
                                 <img src={s.img} width="100" className='flex justify-center' />
                                 <Typography variant='h5' fontWeight='bold' mt={1}>{s.name}</Typography>
                                 <Typography variant="body1" mt={1}>{s.text}</Typography>
