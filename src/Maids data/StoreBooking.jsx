@@ -12,15 +12,14 @@ const StoreBooking = ({ openDialog, setOpenDialog, bookings, setBookings }) => {
 
     const removemaid = (id) => {
         const updated = bookings.filter(m => m.id !== id)
+        console.log(updated)
 
         setBookings(updated)
         localStorage.setItem("bookedMaids", JSON.stringify(updated))
-        console.log(islogged)
     }
 
     return (
         <>
-
             <Dialog open={openDialog} onClose={() => setOpenDialog(false)} fullWidth>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton sx={{ ml: 0.3, width: '48px', height: '48px' }} onClick={() => setOpenDialog(false)}>
@@ -59,6 +58,7 @@ const StoreBooking = ({ openDialog, setOpenDialog, bookings, setBookings }) => {
             <PaymentForm
                 setPaymentForm={setPaymentForm}
                 paymentForm={paymentForm}
+                setOpenDialog={setOpenDialog}
             />
         </>
     )

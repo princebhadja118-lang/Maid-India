@@ -24,6 +24,7 @@ const PaymentForm = ({ paymentForm, setPaymentForm }) => {
             ...paymnetDetails,
             [e.target.name]: e.target.value
         })
+
     }
 
     const checkPayment = () => {
@@ -53,14 +54,11 @@ const PaymentForm = ({ paymentForm, setPaymentForm }) => {
         } else if (!paymnetDetails.BilAddress.trim()) {
             newError.BilAddress = 'Enter Billing Address'
         } else {
-            const update = localStorage.removeItem('bookedMaids')
+            localStorage.removeItem('bookedMaids')
             setPaymentForm(false)
         }
-
-
         setPaymentError(newError)
-
-
+        setPaymnetDetails({ NameonCard: '', CardNum: '', ExpDate: '', CVV: '', BilAddress: '' })
     }
 
     return (
